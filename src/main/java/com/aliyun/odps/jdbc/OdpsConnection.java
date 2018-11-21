@@ -15,33 +15,6 @@
 
 package com.aliyun.odps.jdbc;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.NClob;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
-import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.UUID;
-import java.util.concurrent.Executor;
-
-import org.slf4j.Logger;
-import org.slf4j.MDC;
-
 import com.aliyun.odps.Odps;
 import com.aliyun.odps.OdpsException;
 import com.aliyun.odps.account.Account;
@@ -49,6 +22,12 @@ import com.aliyun.odps.account.AliyunAccount;
 import com.aliyun.odps.jdbc.utils.ConnectionResource;
 import com.aliyun.odps.jdbc.utils.LoggerFactory;
 import com.aliyun.odps.jdbc.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.MDC;
+
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.Executor;
 
 public class OdpsConnection extends WrapperAdapter implements Connection {
 
@@ -224,9 +203,9 @@ public class OdpsConnection extends WrapperAdapter implements Connection {
   @Override
   public void setAutoCommit(boolean autoCommit) throws SQLException {
     if (!autoCommit) {
-      log.error(Thread.currentThread().getStackTrace()[1].getMethodName()
+      log.warn(Thread.currentThread().getStackTrace()[1].getMethodName()
           + " to false is not supported!!!");
-      throw new SQLFeatureNotSupportedException("enabling autocommit is not supported");
+//      throw new SQLFeatureNotSupportedException("enabling autocommit is not supported");
     }
   }
 
@@ -237,20 +216,20 @@ public class OdpsConnection extends WrapperAdapter implements Connection {
 
   @Override
   public void commit() throws SQLException {
-    log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
-    throw new SQLFeatureNotSupportedException();
+    log.warn(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
+//    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
   public void rollback() throws SQLException {
-    log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
-    throw new SQLFeatureNotSupportedException();
+    log.warn(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
+//    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
   public void rollback(Savepoint savepoint) throws SQLException {
-    log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
-    throw new SQLFeatureNotSupportedException();
+    log.warn(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
+//    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
@@ -307,8 +286,8 @@ public class OdpsConnection extends WrapperAdapter implements Connection {
 
   @Override
   public void setTransactionIsolation(int level) throws SQLException {
-    log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
-    throw new SQLFeatureNotSupportedException();
+    log.warn(Thread.currentThread().getStackTrace()[1].getMethodName() + " is not supported!!!");
+//    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
